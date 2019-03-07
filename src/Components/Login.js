@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
 
 class Login extends Component {
@@ -6,7 +7,8 @@ class Login extends Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            redirect: false
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -18,18 +20,20 @@ class Login extends Component {
         e.preventDefault();
         const { username, password } = this.state;
         const login = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`,
-            {
-                username,
-                password
-            }
+            { username, password }
         );
-		console.log('TCL: Login -> onSubmit -> login', login)
+        localStorage.setItem("jwtToken", login.data.token);
+        this.props.setUser();
+        this.setState({redirect: true});
     }
     
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/" />
+        }
         return (
             <div>
-                <section class="section">
+                <section className="section">
                     <div className="container">
                         <div className="columns is-centered">
                             <div className="column is-one-third">
@@ -39,7 +43,7 @@ class Login extends Component {
                                     <label className="formLabel" htmlFor="password">Password</label>
                                     <input onChange={this.onChange} type="password" name="password" className="input"/>
                                     <div className="field is-grouped is-grouped-centered">
-                                    <button type="submit" className="formButton button is-centered is-info">Login</button>
+                                        <button type="submit" className="formButton button is-centered is-info">Login</button>
                                     </div>
                                 </form>
                             </div>
