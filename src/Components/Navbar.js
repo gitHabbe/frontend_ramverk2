@@ -58,9 +58,9 @@ class Navbar extends Component {
 
     renderMoreNav() {
         return [
-            <Link to="/figure" className="navbar-item">
+            <Link to="/figure" className="navbar-item" key="asdf">
                 Figure
-            </Link>,
+            </Link>
         ];
     }
 
