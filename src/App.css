@@ -34,6 +34,29 @@
   width: 100%;
 }
 
+.graphHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 8px;
+
+}
+
+.graphHeader > span {
+  font-size: 28px;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.figureForm {
+  display: flex;
+}
+
+.figureForm > * {
+  margin: 0 8px;
+  font-weight: 700;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

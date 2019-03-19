@@ -42,10 +42,12 @@ class Navbar extends Component {
         return (
             <div className="navbar-item">
                 <p className="navbar-item">
-                    <strong>{this.props.user.balance}</strong>&nbsp;coins
+                    <strong>{parseFloat(this.props.user.balance).toFixed(2)}</strong>&nbsp;coins
                 </p> - 
                 <p className="navbar-item">
-                    <strong>{this.props.user.username}</strong>
+                    <Link to="/dashboard" >
+                        <strong>{this.props.user.username}</strong>
+                    </Link>
                 </p>
                 <div className="buttons">
                     <button onClick={this.logout} className="button is-danger">
@@ -60,6 +62,9 @@ class Navbar extends Component {
         return [
             <Link to="/figure" className="navbar-item" key="asdf">
                 Figure
+            </Link>,
+            <Link to="/dashboard" className="navbar-item" key="asdff">
+                Dashboard
             </Link>
         ];
     }

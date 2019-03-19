@@ -19,12 +19,16 @@ class Login extends Component {
     async onSubmit(e) {
         e.preventDefault();
         const { username, password } = this.state;
-        const login = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`,
-            { username, password }
-        );
-        localStorage.setItem("jwtToken", login.data.token);
-        this.props.setUser();
-        this.setState({redirect: true});
+        try {
+            const login = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`,
+                { username, password }
+            );
+            localStorage.setItem("jwtToken", login.data.token);
+            this.props.setUser();
+            this.setState({redirect: true});
+        } catch (error) {
+			console.log("TCL: Login -> }catch -> error", error);
+        }
     }
     
     render() {
