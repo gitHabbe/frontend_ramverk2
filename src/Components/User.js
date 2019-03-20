@@ -7,7 +7,8 @@ class User extends Component {
         super(props);
         this.state = {
             reroute: false,
-            rows: []
+            history: [],
+            summary: []
         }
     }
 
@@ -25,16 +26,29 @@ class User extends Component {
             `${process.env.REACT_APP_API_URL}/user/purchases`,
             { headers: { "x-access-token": localStorage.getItem("jwtToken") } }
         );
-        console.log('TCL: User -> componentWillMount -> res', res);
-        let rows = res.data.rows.map((row, i) => {
+		console.log("res: ", res);
+        const res2 = await axios.get(
+            `${process.env.REACT_APP_API_URL}/user/figures`,
+            { headers: { "x-access-token": localStorage.getItem("jwtToken") } }
+        );
+		console.log("res2: ", res2);
+        let history = res.data.rows.map((row, i) => {
             return <tr key={i}>
                 <td>{row.figure_name}</td>
                 <td>{row.count}</td>
                 <td>{row.value}</td>
                 <td>{row.value * row.count}</td>
+                <td>{row.tradeType}</td>
             </tr>
         });
-        this.setState({rows});
+        let summary = res2.data.rows.map((row, i) => {
+            return <tr key={i}>
+                <td>{row.figure_name}</td>
+                <td>{row.count}</td>
+                {/* <td>{row.MoneySpend}</td> */}
+            </tr>
+        });
+        this.setState({history, summary});
     }
     
 
@@ -56,6 +70,27 @@ class User extends Component {
                     <div className="container">
                         <div className="columns is-centered">
                             <div className="column is-narrow">
+                            <h3 className="title is-4">Inventory Summary</h3>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Figure</th>
+                                        <th>Count</th>
+                                        {/* <th>Money spent</th> */}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.summary}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                            <hr/>
+                    </div>
+                    <div className="container">
+                        <div className="columns is-centered">
+                            <div className="column is-narrow has-text-centered">
+                                <h3 className="title is-4">Purchase history</h3>
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -63,10 +98,11 @@ class User extends Component {
                                             <th>Count</th>
                                             <th>Value</th>
                                             <th>Total</th>
+                                            <th>Type</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {this.state.rows}
+                                        {this.state.history}
                                     </tbody>
                                 </table>
                             </div>

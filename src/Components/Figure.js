@@ -39,7 +39,7 @@ class Figure extends Component {
                     }
                 }
             );
-			console.log('TCL: Figure -> componentWillMount -> user', user)
+			// console.log('TCL: Figure -> componentWillMount -> user', user)
             
             const test = await axios.post(
                 `${process.env.REACT_APP_API_URL}/user/buy`,
@@ -50,7 +50,7 @@ class Figure extends Component {
                 }
             );
             this.props.setUser();
-            console.log('TCL: Figure -> componentWillMount -> test', test)
+            // console.log('TCL: Figure -> componentWillMount -> test', test)
         });
         
         socket.on("selling", async info => {
@@ -63,7 +63,7 @@ class Figure extends Component {
                     }
                 }
             );
-			console.log('TCL: Figure -> componentWillMount -> user', user)
+			// console.log('TCL: Figure -> componentWillMount -> user', user)
             
             const test = await axios.post(
                 `${process.env.REACT_APP_API_URL}/user/sell`,
@@ -74,13 +74,16 @@ class Figure extends Component {
                 }
             );
             this.props.setUser();
-            console.log('TCL: Figure -> componentWillMount -> test', test)
+            // console.log('TCL: Figure -> componentWillMount -> test', test)
         });
 
         let graphs = {};
         let first = true;
         let graphContainer = this.myRef.current;
         socket.on("stocks", message => {
+            if (this.state.reroute) {
+                return;
+            }
             if (first) {
                 var palette = new Rickshaw.Color.Palette({ scheme: 'colorwheel' });
 
@@ -100,6 +103,10 @@ class Figure extends Component {
                     figureButtonBuy.onclick = async e => {
                         e.preventDefault();
                         if (input.value <= 0) return;
+                        user = await axios.post(
+                            `${process.env.REACT_APP_API_URL}/user/token`,
+                            {token}
+                        );
                         await socket.emit("buy", {figure, user, count: input.value});
                         console.log("sent buying emit: ");
                         // await this.props.setUser();
@@ -109,9 +116,13 @@ class Figure extends Component {
                     figureButtonSell.onclick = async e => {
                         e.preventDefault();
                         if (input.value <= 0) return;
+                        user = await axios.post(
+                            `${process.env.REACT_APP_API_URL}/user/token`,
+                            {token}
+                        );
                         await socket.emit("sell", {figure, user, count: input.value});
                         console.log("sent selling emit: ");
-                        await this.props.setUser();
+                        // await this.props.setUser();
                     }
                     input.classList.add("input");
                     input.placeholder = "0";
@@ -204,6 +215,8 @@ class Figure extends Component {
 
     render() {
         if (this.state.reroute) {
+            let graphContainer = this.myRef.current;
+            graphContainer.innerHTML = <div></div>;
             return <Redirect to="/login" />
         }
         
