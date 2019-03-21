@@ -23,6 +23,12 @@
   color: #61dafb;
 }
 
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .formLabel {
   display: flex;
   justify-content: center;

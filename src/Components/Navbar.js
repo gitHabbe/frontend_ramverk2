@@ -65,6 +65,9 @@ class Navbar extends Component {
             </Link>,
             <Link to="/dashboard" className="navbar-item" key="asdff">
                 Dashboard
+            </Link>,
+            <Link to="/manage" className="navbar-item" key="asdfff">
+                Money
             </Link>
         ];
     }

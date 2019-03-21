@@ -12,7 +12,6 @@ class Figure extends Component {
             reroute: false,
             socket: "",
             figures: []
-            // user: {}
         }
         this.myRef = React.createRef();
     }
@@ -26,7 +25,6 @@ class Figure extends Component {
         if (!user.data.token) {
             this.setState({reroute: true});
         }
-        // this.setState({user});
         let socket = io.connect(`${process.env.REACT_APP_SOCKET_URL}`);
         
         socket.on("buying", async info => {
@@ -39,9 +37,8 @@ class Figure extends Component {
                     }
                 }
             );
-			// console.log('TCL: Figure -> componentWillMount -> user', user)
             
-            const test = await axios.post(
+            await axios.post(
                 `${process.env.REACT_APP_API_URL}/user/buy`,
                 {figure: info.correctFigure, user, count: info.count}, {
                     headers: {
@@ -50,7 +47,6 @@ class Figure extends Component {
                 }
             );
             this.props.setUser();
-            // console.log('TCL: Figure -> componentWillMount -> test', test)
         });
         
         socket.on("selling", async info => {
@@ -63,9 +59,8 @@ class Figure extends Component {
                     }
                 }
             );
-			// console.log('TCL: Figure -> componentWillMount -> user', user)
             
-            const test = await axios.post(
+            await axios.post(
                 `${process.env.REACT_APP_API_URL}/user/sell`,
                 {figure: info.correctFigure, user, count: info.count}, {
                     headers: {
@@ -74,21 +69,16 @@ class Figure extends Component {
                 }
             );
             this.props.setUser();
-            // console.log('TCL: Figure -> componentWillMount -> test', test)
         });
 
         let graphs = {};
         let first = true;
         let graphContainer = this.myRef.current;
         socket.on("stocks", message => {
-            if (this.state.reroute) {
-                return;
-            }
             if (first) {
                 var palette = new Rickshaw.Color.Palette({ scheme: 'colorwheel' });
 
                 message.forEach(figure => {
-                    // let titleElement        = document.createElement("div");
                     let graphElement        = document.createElement("div");
                     let input               = document.createElement("input");
                     let figureButtonSell    = document.createElement("button");
@@ -214,11 +204,11 @@ class Figure extends Component {
     }
 
     render() {
-        if (this.state.reroute) {
-            let graphContainer = this.myRef.current;
-            graphContainer.innerHTML = <div></div>;
-            return <Redirect to="/login" />
-        }
+        // if (this.state.reroute) {
+        //     let graphContainer = this.myRef.current;
+        //     graphContainer.innerHTML = <div></div>;
+        //     return <Redirect to="/login" />
+        // }
         
         return (
             <div>

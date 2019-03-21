@@ -9,6 +9,7 @@ import Login from "./Components/Login";
 import Home from "./Components/Home";
 import Figure from "./Components/Figure";
 import User from "./Components/User";
+import Manage from "./Components/Manage";
 
 class App extends Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class App extends Component {
           <Route path="/figure"   render={props => <Figure {...props} setUser={this.setUser} />} />
           {/* <Route path="/figure"   component={Figure} /> */}
           <Route path="/dashboard"     component={User} />
+          <Route path="/manage"     render={props => <Manage {...props} setUser={this.setUser}/>} />
         </div>
       </Router>
     );
