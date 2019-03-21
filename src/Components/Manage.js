@@ -13,24 +13,32 @@ class Manage extends Component {
             amount: 0,
             currency: "¤"
         };
-        this.onChange = this.onChange.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
+        this.onOptionChange = this.onOptionChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChange = e => {
+    onOptionChange = e => {
         this.setState({[e.target.name]: e.target.value});
         if (this.state.method === "Deposit") {
-            this.setState({result: Math.round(this.state.amount * this.state.multiplier),
-                currency: "¤"});
-        } else if (this.state.method === "withdraw") {
             this.setState({
                 result: Math.round(this.state.amount * this.state.multiplier),
                 currency: "€"
             });
+        } else if (this.state.method === "Withdraw") {
+            this.setState({
+                result: Math.round(this.state.amount * this.state.multiplier),
+                currency: "¤"
+            });
         }
-        console.log(e.target.value);
-        
+        console.log("this.state.currency: ", this.state.currency);
     };
+
+    onInputChange = e => {
+        const value = e.target.value;
+        this.setState({[e.target.name]: value});
+        this.setState({result: Math.round(value * this.state.multiplier)});
+    }
 
     async onSubmit(e) {
         e.preventDefault();
@@ -91,13 +99,13 @@ class Manage extends Component {
                             <div className="column is-narrow">
                                 <form onSubmit={this.onSubmit} className="form flexcol" method="post">
                                     <p>You are about to {this.state.method}: {this.state.result} {this.state.currency}</p>
-                                    <select onChange={this.onChange} name="method">
+                                    <select onChange={this.onOptionChange} name="method">
                                         <option value="Deposit">Deposit</option>
                                         <option value="Withdraw">Withdraw</option>
                                     </select>
                                     <label htmlFor="amount">Amount</label>
                                     <div>
-                                        <input onChange={this.onChange} type="number" name="amount"/>
+                                        <input onChange={this.onInputChange} type="number" name="amount"/>
                                         {this.state.method === "Deposit" ? "€" : "¤"}
                                     </div>
                                     <button type="submit" className="button">{this.state.method}</button>

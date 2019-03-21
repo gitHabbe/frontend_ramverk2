@@ -36,8 +36,8 @@ class User extends Component {
             return <tr key={i}>
                 <td>{row.figure_name}</td>
                 <td>{row.count}</td>
-                <td>{row.value}</td>
-                <td>{row.value * row.count}</td>
+                <td>{row.value.toFixed(2)}</td>
+                <td>{(row.value * row.count).toFixed(2)}</td>
                 <td>{row.tradeType}</td>
             </tr>
         });

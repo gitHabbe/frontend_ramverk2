@@ -76,6 +76,9 @@ class Figure extends Component {
         let graphContainer = this.myRef.current;
         socket.on("stocks", message => {
             if (first) {
+                if (this.state.reroute) {
+                    return;
+                }
                 var palette = new Rickshaw.Color.Palette({ scheme: 'colorwheel' });
 
                 message.forEach(figure => {
@@ -204,11 +207,11 @@ class Figure extends Component {
     }
 
     render() {
-        // if (this.state.reroute) {
-        //     let graphContainer = this.myRef.current;
-        //     graphContainer.innerHTML = <div></div>;
-        //     return <Redirect to="/login" />
-        // }
+        if (this.state.reroute) {
+            let graphContainer = this.myRef.current;
+            graphContainer.innerHTML = <div></div>;
+            return <Redirect to="/login" />
+        }
         
         return (
             <div>

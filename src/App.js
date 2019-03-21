@@ -48,7 +48,6 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/login"    render={props => <Login {...props} setUser={this.setUser} />} />
           <Route path="/figure"   render={props => <Figure {...props} setUser={this.setUser} />} />
-          {/* <Route path="/figure"   component={Figure} /> */}
           <Route path="/dashboard"     component={User} />
           <Route path="/manage"     render={props => <Manage {...props} setUser={this.setUser}/>} />
         </div>
