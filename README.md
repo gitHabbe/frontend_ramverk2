@@ -42,9 +42,19 @@ Fördelar med att jobba mot virtual DOM är att prestandan ökar eftersom det g�
 Det är sällan en bra idé att prisa React som någon vinnare av front-end programmering när det kommer till prestanda eller flexibilitet. Bland dom 3 giganterna så är alla bra sitt eget vis och det är upp till var och en att välja ett eller flera verktyg att jobba med i sina applikationer. Om det är något som React är bra på så är det enkelhet. Mycket av den standard och syntax-val gör att det inte ser speciellt skrämmande ut att börja jobba med den miljö som presenterar sig. Facebook har gjort ett fantastiskt jobb att starta och upprätthålla projekt med create-react-app och jag rekommenderar det starkt. Allt som applikationen växer och man måste skicka runt state så kommer Redux till utsättning för att enklare hantera informationen. Redux är rätt svårt att komma igång med och kräver rätt mycket kod, men jag har hört att det snabbt kortas ner allt som man använder det.  
 
 ## Skriven av
+
+
 [Niklas Hallberg](https://github.com/gitHabbe/)
 
+## Länkar
+
+
+[Redux](https://redux.js.org/)  
+[Create React App](https://github.com/facebook/create-react-app)
+
 ## Källor
-[https://reactjs.org/](https://reactjs.org/)
+
+
+[https://reactjs.org/](https://reactjs.org/)  
 [Rigal Networks](https://www.rigelnetworks.com/using-virtual-dom-react-js-top-5-benefits/)
 
