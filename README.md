@@ -13,7 +13,7 @@ import React from “react”;
 const HeaderAndParagraph = () => { 
     return (<div><h1>Rubrik</h1>p>Paragraf</p>div>); 
 }
-module.exports = HeaderAndParagraph;
+export default HeaderAndParagraph;
 ``` 
 Likt hur man lägger element inuti element i HTML så kan man placera komponenter i andra komponenter. För att göra det så behöver man bara exportera sin funktion och importera den i den fil som behöver informationen. Att fästa den nya komponenten kan se ut såhär: 
 ```JavaScript 
@@ -33,4 +33,18 @@ Med denna korta introduktion är du redo att bygga simpla applikationer via Reac
 
 Istället för att bygga på den vanliga DOMen (document object model) så virtualiserar React en egen som går att uppdatera på ett snabbare och effektivare sätt. På det här viset så tar det kortare tid för webbläsaren att bryta ner och montera upp hemsidan och dess noder när en förändring sker via till exempel en musklick. React har koll på 2 virtuella DOMs för att kunna avgöra vilka element som ska uppdateras när ett skifte av state har skett. Den nya och gamla DOMen jämförs mot varandra för att avgöra vilka element som tvingas byggas om via dom komponenter som man tidigare skapat. 
 
-Fördelar med att jobba mot virtual DOM är att prestandan ökar eftersom det går snabbare att förändra tillståndet även om man måste bygga upp större delar av applikationen så krävs det mindre resurser av enheten. Det går fortfarande att skriva vanlig JavaScript för att påverka komponenter på sitt eget sätt eftersom React efteråt uppdaterar DOMen. Det finns även nackdelar med att jobba på det här viset. Det tar mer kraft av processorn att virtualisera miljön eftersom det kräver ett extra lager med script för optimeringen.  
+Fördelar med att jobba mot virtual DOM är att prestandan ökar eftersom det går snabbare att förändra tillståndet även om man måste bygga upp större delar av applikationen så krävs det mindre resurser av enheten. Det går fortfarande att skriva vanlig JavaScript för att påverka komponenter på sitt eget sätt eftersom React efteråt uppdaterar DOMen. Det finns även nackdelar med att jobba på det här viset. Det tar mer kraft av processorn att virtualisera miljön eftersom det kräver ett extra lager med script för optimeringen.
+
+
+## Avslutningsvis
+
+
+Det är sällan en bra idé att prisa React som någon vinnare av front-end programmering när det kommer till prestanda eller flexibilitet. Bland dom 3 giganterna så är alla bra sitt eget vis och det är upp till var och en att välja ett eller flera verktyg att jobba med i sina applikationer. Om det är något som React är bra på så är det enkelhet. Mycket av den standard och syntax-val gör att det inte ser speciellt skrämmande ut att börja jobba med den miljö som presenterar sig. Facebook har gjort ett fantastiskt jobb att starta och upprätthålla projekt med create-react-app och jag rekommenderar det starkt. Allt som applikationen växer och man måste skicka runt state så kommer Redux till utsättning för att enklare hantera informationen. Redux är rätt svårt att komma igång med och kräver rätt mycket kod, men jag har hört att det snabbt kortas ner allt som man använder det.  
+
+## Skriven av
+[Niklas Hallberg](https://github.com/gitHabbe/)
+
+## Källor
+[https://reactjs.org/](https://reactjs.org/)
+[Rigal Networks](https://www.rigelnetworks.com/using-virtual-dom-react-js-top-5-benefits/)
+
