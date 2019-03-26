@@ -1,6 +1,6 @@
-#React 
+# React 
 
-##Grunderna 
+## Grunderna 
 
  
 
@@ -27,7 +27,7 @@ Med denna korta introduktion är du redo att bygga simpla applikationer via Reac
 
  
 
-##Virtual DOM 
+## Virtual DOM 
 
  
 
