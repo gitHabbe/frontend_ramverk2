@@ -44,15 +44,17 @@ class Manage extends Component {
         e.preventDefault();
         const token = localStorage.getItem("jwtToken");
         if (this.state.method === "Deposit") {
-            const test =  await axios.post(`${process.env.REACT_APP_API_URL}/user/deposit`,
-            {token, amount: this.state.amount}, {
+            await axios.post(
+                `${process.env.REACT_APP_API_URL}/user/deposit`,
+                {token, amount: this.state.amount}, {
                 headers: {
                     "x-access-token": localStorage.getItem("jwtToken")
                 }
             });
         } else if (this.state.method === "Withdraw") {
-            const test =  await axios.post(`${process.env.REACT_APP_API_URL}/user/withdraw`,
-            {token, amount: this.state.amount}, {
+            await axios.post(
+                `${process.env.REACT_APP_API_URL}/user/withdraw`,
+                {token, amount: this.state.amount}, {
                 headers: {
                     "x-access-token": localStorage.getItem("jwtToken")
                 }
