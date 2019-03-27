@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user: {},
-            redirect: false
+            redirect: false,
+            burger: false
         }
 
         this.logout = this.logout.bind(this);
+        this.toggleBurger = this.toggleBurger.bind(this);
     }
 
     componentWillMount() {
         this.setState({ user: this.props.user });
     }
-        
+    
+    toggleBurger() {
+        this.setState({burger: !this.state.burger});
+    }
 
     renderLogin() {
         return (
@@ -50,9 +55,9 @@ class Navbar extends Component {
                     </Link>
                 </p>
                 <div className="buttons">
-                    <button onClick={this.logout} className="button is-danger">
+                    <Link to="/" onClick={this.logout} className="button is-danger">
                         <strong>Logout</strong>
-                    </button>
+                    </Link>
                 </div>
             </div>
         )
@@ -73,9 +78,6 @@ class Navbar extends Component {
     }
 
     render() {
-        if (this.state.redirect) {
-            return <Redirect to="/" />
-        }
         return (
             <div>
                 <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -84,13 +86,14 @@ class Navbar extends Component {
                             <img src="https://bulma.io/images/bulma-logo.png" alt="bulma" width="112" height="28" />
                         </a>
 
-                        <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <button onClick={this.toggleBurger} className="navbar-burger burger"
+                            aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
                         </button>
                     </div>
-                    <div id="navbarBasicExample" className="navbar-menu">
+                    <div id="navbarBasicExample" className={ this.state.burger ? 'navbar-menu is-active' : 'navbar-menu'}>
                         <div className="navbar-start">
                             <Link to="/" className="navbar-item">
                                 Home
