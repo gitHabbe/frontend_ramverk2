@@ -11,8 +11,8 @@ Här är ett exempel på hur man kan skapa en komponent som genererar en rubrik 
 
 import React from “react”; 
 const HeaderAndParagraph = () => { 
-    return (<div><h1>Rubrik</h1>p>Paragraf</p>div>); 
-}
+    return (<div><h1>Rubrik</h1<p>Paragraf</p>div>); 
+};
 export default HeaderAndParagraph;
 ``` 
 Likt hur man lägger element inuti element i HTML så kan man placera komponenter i andra komponenter. För att göra det så behöver man bara exportera sin funktion och importera den i den fil som behöver informationen. Att fästa den nya komponenten kan se ut såhär: 

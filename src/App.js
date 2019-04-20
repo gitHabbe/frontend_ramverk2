@@ -34,7 +34,7 @@ class App extends Component {
         `${process.env.REACT_APP_API_URL}/user/get-user`,
         {token, user},
         { headers: { "x-access-token": localStorage.getItem("jwtToken") } }
-    );
+      );
     }
     this.setState({user: user.data.user});
   }
