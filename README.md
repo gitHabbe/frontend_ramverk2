@@ -11,7 +11,7 @@ Här är ett exempel på hur man kan skapa en komponent som genererar en rubrik 
 
 import React from “react”; 
 const HeaderAndParagraph = () => { 
-    return (<div><h1>Rubrik</h1<p>Paragraf</p>div>); 
+    return (<div><h1>Rubrik</h1><p>Paragraf</p>div>); 
 };
 export default HeaderAndParagraph;
 ``` 
